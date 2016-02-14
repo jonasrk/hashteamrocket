@@ -5,19 +5,20 @@ def parse_file(file_name):
         p_weights = [int(x) for x in f.readline().split()]
         w = int(f.readline())
         ws = []
-        for _ in range(w):
+        for i in range(w):
             w_cords = f.readline().split()
-#             ws.append([
-#                 (int(w_cords[0]), int(w_cords[1])),
-#                 [int(x) for x in f.readline().split()]
-#             ])
-            ws.append({"cords": (int(w_cords[0]), int(w_cords[1])), "products": [int(x) for x in f.readline().split()]})
-            
+            ws.append({
+                "id": i,
+                "cords": (int(w_cords[0]), int(w_cords[1])), 
+                "products": [int(x) for x in f.readline().split()]
+            })
         o = int(f.readline())
         os = []
-        for _ in range(o):
+        for i in range(o):
             o_cords = f.readline().split()
             order = {
+                "id": i,
+                "completed": False,
                 "cords": (int(o_cords[0]), int(o_cords[1])),
                 "product_count": int(f.readline())
             }
@@ -30,7 +31,12 @@ def parse_file(file_name):
     return (n_rows, n_cols, n_drones, deadline, max_load, p, p_weights, w, ws, o, os)
 
 if __name__ == '__main__':
-    n_rows, n_cols, n_drones, deadline, max_load, p, p_weights, w, ws, o, os = parse_file('data/test.in')
+    n_rows, n_cols, n_drones, deadline, max_load, p, p_weights, w, ws, o, os = parse_file('data/busy_day.in')
+    print(w)
+    n_rows, n_cols, n_drones, deadline, max_load, p, p_weights, w, ws, o, os = parse_file('data/mother_of_all_warehouses.in')
+    print(w)
+    n_rows, n_cols, n_drones, deadline, max_load, p, p_weights, w, ws, o, os = parse_file('data/redundancy.in')
+    print(w)
     print("Grid Dimension: %d x %d" % (n_rows, n_cols))
     print("%d Turns" % (deadline))
     print("%d Drones with %d capacity" % (p, max_load))
