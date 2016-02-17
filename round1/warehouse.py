@@ -1,7 +1,6 @@
 class Warehouse:
-    """
-    :param stock array counting number of each product type
-    """
-    def __init__(self, position, stock):
-        self.position = position
-        self.stock = stock
+    def __init__(self, name: int, x: int, y: int, product_counts):
+        self.name = name
+        self.x = x
+        self.y = y
+        self.product_counts = product_counts
